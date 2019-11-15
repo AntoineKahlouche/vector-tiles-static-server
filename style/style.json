@@ -1,0 +1,281 @@
+{
+	"version": 8,
+	"name": "R4C3",
+	"bearing": 0,
+	"pitch": 0,
+	"sources": {
+		"openmaptiles": {
+			"type": "vector",
+			"tiles": ["http://localhost/data/{z}/{x}/{y}.pbf"]
+		}
+	},
+	"sprite": "http://localhost/sprite/sprite",
+	"glyphs": "http://localhost/glyph/{fontstack}/{range}.pbf",
+	"layers": [
+		{
+			"id": "background",
+			"type": "background",
+			"paint": {
+				"background-color": {
+					"stops": [[2, "#F5F5F5"], [11, "#F3F3F3"]]
+				}
+			}
+		},
+		{
+			"id": "water",
+			"type": "fill",
+			"source": "openmaptiles",
+			"source-layer": "water",
+			"paint": {
+				"fill-color": "#A1D3FF"
+			}
+		},
+		{
+			"id": "landcover-wood",
+			"type": "fill",
+			"source": "openmaptiles",
+			"source-layer": "landcover",
+			"filter": ["==", "class", "wood"],
+			"paint": {
+				"fill-color": "#C8E6C9",
+				"fill-opacity": {
+					"stops": [[7, 0.5], [11, 1]]
+				}
+			}
+		},
+		{
+			"id": "landcover-grass",
+			"type": "fill",
+			"source": "openmaptiles",
+			"source-layer": "landcover",
+			"filter": ["==", "class", "grass"],
+			"paint": {
+				"fill-color": "#C8E6C9",
+				"fill-opacity": {
+					"stops": [[7, 0.3], [11, 0.5]]
+				}
+			}
+		},
+		{
+			"id": "landcover-ice",
+			"type": "fill",
+			"source": "openmaptiles",
+			"source-layer": "landcover",
+			"filter": ["in", "class", "ice"],
+			"paint": {
+				"fill-color": "#CFD8DC"
+			}
+		},
+		{
+			"id": "landuse-residential",
+			"type": "fill",
+			"source": "openmaptiles",
+			"source-layer": "landuse",
+			"filter": ["==", "class", "residential"],
+			"paint": {
+				"fill-color": "#EEEEEE"
+			}
+		},
+		{
+			"id": "boundary-country",
+			"type": "line",
+			"source": "openmaptiles",
+			"source-layer": "boundary",
+			"filter": ["all", ["<=", "admin_level", 2], ["==", "maritime", 0]],
+			"paint": {
+				"line-color": {
+					"stops": [[2, "#BDBDBD"], [11, "#757575"]]
+				}
+			}
+		},
+		{
+			"id": "transportation-secondary_tertiary",
+			"type": "line",
+			"source": "openmaptiles",
+			"source-layer": "transportation",
+			"filter": ["in", "class", "secondary", "tertiary"],
+			"paint": {
+				"line-color": "#FFFFFF",
+				"line-width": 1
+			}
+		},
+		{
+			"id": "transportation-primary",
+			"type": "line",
+			"source": "openmaptiles",
+			"source-layer": "transportation",
+			"filter": ["==", "class", "primary"],
+			"paint": {
+				"line-color": "#FFCA28",
+				"line-width": {
+					"stops": [[7, 0], [11, 1]]
+				}
+			}
+		},
+		{
+			"id": "transportation-trunk",
+			"type": "line",
+			"source": "openmaptiles",
+			"source-layer": "transportation",
+			"filter": ["==", "class", "trunk"],
+			"paint": {
+				"line-color": "#FFD54F",
+				"line-width": {
+					"stops": [[5, 0], [11, 2]]
+				}
+			}
+		},
+		{
+			"id": "transportation-motorway",
+			"type": "line",
+			"source": "openmaptiles",
+			"source-layer": "transportation",
+			"filter": ["==", "class", "motorway"],
+			"paint": {
+				"line-color": {
+					"stops": [[4, "#FFD54F"], [11, "#FFC107"]]
+				},
+				"line-width": {
+					"stops": [[4, 0], [11, 3]]
+				}
+			}
+		},
+		{
+			"id": "transportation_name-motorway",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "transportation_name",
+			"minzoom": 7,
+			"filter": ["all", ["==", "class", "motorway"], ["<=", "ref_length", 6], [">=", "ref_length", 1]],
+			"layout": {
+				"text-rotation-alignment": "viewport",
+				"text-size": 9,
+				"text-font": ["Roboto-Medium"],
+				"symbol-placement": "line-center",
+				"symbol-spacing": 500,
+				"text-field": "{ref}",
+				"icon-image": "rectangle-red",
+				"icon-rotation-alignment": "viewport",
+				"icon-text-fit": "both",
+				"icon-text-fit-padding": [5, 5, 2, 5]
+			},
+			"paint": {
+				"text-color": "#FFFFFF"
+			}
+		},
+		{
+			"id": "transportation_name-trunk",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "transportation_name",
+			"minzoom": 8,
+			"filter": ["all", ["==", "class", "trunk"], ["<=", "ref_length", 6], [">=", "ref_length", 1]],
+			"layout": {
+				"text-rotation-alignment": "viewport",
+				"text-size": 9,
+				"text-font": ["Roboto-Medium"],
+				"symbol-placement": "line-center",
+				"symbol-spacing": 500,
+				"text-field": "{ref}",
+				"icon-image": "rectangle-yellow",
+				"icon-rotation-alignment": "viewport",
+				"icon-text-fit": "both",
+				"icon-text-fit-padding": [5, 5, 2, 5]
+			},
+			"paint": {
+				"text-color": "#424242"
+			}
+		},
+		{
+			"id": "place-other",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "place",
+			"filter": ["in", "class", "town", "village"],
+			"layout": {
+				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
+				"text-font": ["Roboto-Regular"],
+				"text-size": {
+					"stops": [[2, 5], [11, 15]]
+				},
+				"text-anchor": "center",
+				"text-max-width": 8
+			},
+			"paint": {
+				"text-color": "#757575"
+			}
+		},
+		{
+			"id": "place-city",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "place",
+			"filter": ["==", "class", "city"],
+			"layout": {
+				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
+				"text-font": ["Roboto-Regular"],
+				"text-size": {
+					"stops": [[2, 10], [11, 20]]
+				},
+				"text-max-width": 8
+			},
+			"paint": {
+				"text-color": "#616161"
+			}
+		},
+		{
+			"id": "place-country_3",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "place",
+			"filter": ["all", ["==", "class", "country"], [">=", "rank", 3]],
+			"layout": {
+				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
+				"text-font": ["Roboto-Medium"],
+				"text-size": {
+					"stops": [[2, 6], [11, 30]]
+				},
+				"text-transform": "uppercase"
+			},
+			"paint": {
+				"text-color": "#616161"
+			}
+		},
+		{
+			"id": "place-country_2",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "place",
+			"filter": ["all", ["==", "class", "country"], ["==", "rank", 2]],
+			"layout": {
+				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
+				"text-font": ["Roboto-Bold"],
+				"text-size": {
+					"stops": [[2, 8], [11, 40]]
+				},
+				"text-transform": "uppercase"
+			},
+			"paint": {
+				"text-color": "#424242"
+			}
+		},
+		{
+			"id": "place-country_1",
+			"type": "symbol",
+			"source": "openmaptiles",
+			"source-layer": "place",
+			"filter": ["all", ["==", "class", "country"], ["==", "rank", 1]],
+			"layout": {
+				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
+				"text-font": ["Roboto-Black"],
+				"text-size": {
+					"stops": [[2, 10], [11, 50]]
+				},
+				"text-transform": "uppercase"
+			},
+			"paint": {
+				"text-color": "#212121"
+			}
+		}
+	]
+}
