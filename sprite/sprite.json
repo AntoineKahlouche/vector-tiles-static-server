@@ -1,44 +1,16 @@
 {
-  "marker-blue": {
-    "height": 48,
-    "pixelRatio": 1,
-    "width": 34,
-    "x": 0,
-    "y": 0
-  },
-  "marker-minus": {
-    "height": 48,
-    "pixelRatio": 1,
-    "width": 34,
-    "x": 34,
-    "y": 0
-  },
-  "marker-plus": {
-    "height": 48,
-    "pixelRatio": 1,
-    "width": 34,
-    "x": 0,
-    "y": 48
-  },
-  "marker-red": {
-    "height": 48,
-    "pixelRatio": 1,
-    "width": 34,
-    "x": 34,
-    "y": 48
-  },
   "rectangle-red": {
     "height": 18,
     "pixelRatio": 1,
     "width": 35,
-    "x": 68,
+    "x": 0,
     "y": 0
   },
   "rectangle-yellow": {
     "height": 18,
     "pixelRatio": 1,
     "width": 35,
-    "x": 68,
-    "y": 48
+    "x": 35,
+    "y": 0
   }
 }
