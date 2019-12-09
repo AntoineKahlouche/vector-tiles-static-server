@@ -6,11 +6,11 @@
 	"sources": {
 		"openmaptiles": {
 			"type": "vector",
-			"tiles": ["http://localhost/data/{z}/{x}/{y}.pbf"]
+			"tiles": ["http://localhost:81/data/{z}/{x}/{y}.pbf"]
 		}
 	},
-	"sprite": "http://localhost/sprite/sprite",
-	"glyphs": "http://localhost/glyph/{fontstack}/{range}.pbf",
+	"sprite": "http://localhost:81/sprite/sprite",
+	"glyphs": "http://localhost:81/glyph/{fontstack}/{range}.pbf",
 	"layers": [
 		{
 			"id": "background",
@@ -150,7 +150,7 @@
 			"layout": {
 				"text-rotation-alignment": "viewport",
 				"text-size": 9,
-				"text-font": ["Roboto-Medium"],
+				"text-font": ["Medium"],
 				"symbol-placement": "line-center",
 				"symbol-spacing": 500,
 				"text-field": "{ref}",
@@ -173,7 +173,7 @@
 			"layout": {
 				"text-rotation-alignment": "viewport",
 				"text-size": 9,
-				"text-font": ["Roboto-Medium"],
+				"text-font": ["Medium"],
 				"symbol-placement": "line-center",
 				"symbol-spacing": 500,
 				"text-field": "{ref}",
@@ -194,7 +194,7 @@
 			"filter": ["in", "class", "town", "village"],
 			"layout": {
 				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
-				"text-font": ["Roboto-Regular"],
+				"text-font": ["Regular"],
 				"text-size": {
 					"stops": [[2, 5], [11, 15]]
 				},
@@ -213,7 +213,7 @@
 			"filter": ["==", "class", "city"],
 			"layout": {
 				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
-				"text-font": ["Roboto-Regular"],
+				"text-font": ["Regular"],
 				"text-size": {
 					"stops": [[2, 10], [11, 20]]
 				},
@@ -231,7 +231,7 @@
 			"filter": ["all", ["==", "class", "country"], [">=", "rank", 3]],
 			"layout": {
 				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
-				"text-font": ["Roboto-Medium"],
+				"text-font": ["Medium"],
 				"text-size": {
 					"stops": [[2, 6], [11, 30]]
 				},
@@ -249,7 +249,7 @@
 			"filter": ["all", ["==", "class", "country"], ["==", "rank", 2]],
 			"layout": {
 				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
-				"text-font": ["Roboto-Bold"],
+				"text-font": ["Bold"],
 				"text-size": {
 					"stops": [[2, 8], [11, 40]]
 				},
@@ -267,7 +267,7 @@
 			"filter": ["all", ["==", "class", "country"], ["==", "rank", 1]],
 			"layout": {
 				"text-field": ["coalesce", ["get", "name:fr"], ["get", "name:latin"]],
-				"text-font": ["Roboto-Black"],
+				"text-font": ["Black"],
 				"text-size": {
 					"stops": [[2, 10], [11, 50]]
 				},
